@@ -69,6 +69,15 @@ const postTip = (tip) =>
       console.error('Error:', error);
     });
 
+const postDiagnostic=(diagnostic)=>
+    fetch('api/diagnostics',{
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(diagnostic),
+    })
+
 // When the page loads, get all the tips
 getTips().then((data) => data.forEach((tip) => createCard(tip)));
 
@@ -124,10 +133,13 @@ const showErrors = (errorObj) => {
 // Helper function to send a POST request to the diagnostics route (/api/diagnostics)
 const submitDiagnostics = (submissionObj) => {
   // TODO: your code here
-  console.info(
-    '⚠️ Create the logic for the fetch POST request in scripts/index.js'
-  );
-  alert('Add your logic to scripts/index.js');
+  // console.log(submissionObj);
+  // console.log(submissionObj.errors);
+  postDiagnostic(submissionObj.errors);
+//   console.info(
+//     '⚠️ Create the logic for the fetch POST request in scripts/index.js'
+//   );
+//   alert('Add your logic to scripts/index.js');
 };
 
 // Function to handle when a user submits the feedback form
